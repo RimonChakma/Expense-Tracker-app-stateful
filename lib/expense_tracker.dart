@@ -27,6 +27,10 @@ class _ExpenseTrackerScreenState extends State<ExpenseTrackerScreen> {
     }
   }
 
+  double get totalExpense {
+    return expenses.fold(0, (sum, item) => sum + item['amount']);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +39,7 @@ class _ExpenseTrackerScreenState extends State<ExpenseTrackerScreen> {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
+
             TextFormField(
               keyboardType: TextInputType.text,
               controller: titleController,
@@ -52,6 +57,17 @@ class _ExpenseTrackerScreenState extends State<ExpenseTrackerScreen> {
                 border: OutlineInputBorder(),
                 hintText: "amount"
             ),),
+
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: addExpense,
+              child: Text('Add Expense'),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Total Expense: ৳${totalExpense.toStringAsFixed(2)}',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
           ],
         ),
       ),
