@@ -74,7 +74,24 @@ class _ExpenseTrackerScreenState extends State<ExpenseTrackerScreen> {
               'Total Expense: ৳${totalExpense.toStringAsFixed(2)}',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-          ],
+        Expanded(
+          child: ListView.builder(
+            itemCount: expenses.length,
+            itemBuilder: (context, index) {
+              return Card(
+                child: ListTile(
+                  title: Text(expenses[index]["title"]),
+                  subtitle:
+                  Text("\$${expenses[index]["amount"].toString()}"),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.delete, color: Colors.red),
+                    onPressed: () => deleteExpense(index),
+                  ),
+                ),
+              );
+            },
+          ),
+        )],
         ),
       ),
     );
