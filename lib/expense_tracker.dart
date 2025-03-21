@@ -31,6 +31,12 @@ class _ExpenseTrackerScreenState extends State<ExpenseTrackerScreen> {
     return expenses.fold(0, (sum, item) => sum + item['amount']);
   }
 
+  void deleteExpense(int index) {
+    setState(() {
+      expenses.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
